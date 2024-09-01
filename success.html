@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+    <style>
+        /* CSS for styling the form */
+        body {
+            font-family:'Arial', sans-serif;
+            font-weight: bold;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            margin: 0;
+            padding: 24;
+            background: linear-gradient(rgba(205, 202, 202, 0.913), rgba(206, 203, 203, 0.2)), 
+                url('https://cdn.pixabay.com/photo/2018/05/16/14/52/sewing-3405975_640.jpg') no-repeat center center/cover;
+            background-size: cover; /* Ensure the image covers the entire container */
+            image-rendering: -webkit-optimize-contrast; /* Optional */
+            image-rendering: crisp-edges; /* Optional */
+            background-attachment: scroll; 
+            min-height: 200vh;   
+          
+        }
+
+
+        .form-container {
+            background-color:#ffffff;
+            font-size: 20px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+            max-height: 200vh; /* Maximum height to prevent overflow */
+            margin: auto; /* Centers the form */
+            background: linear-gradient(rgba(247, 245, 245, 0.942), rgba(238, 234, 234, 0.928)), 
+            url('https://cdn.pixabay.com/photo/2018/05/16/14/52/sewing-3405975_640.jpg'); /* Replace with the path to your background image */
+            background-size: cover; /* Ensures the image covers the entire page */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .success-message {
+            color: green;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Job Registration</h1>
+        <form id="jobRegistrationForm" onsubmit="return validateForm();">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="10-digit number">
+
+            <label for="position">Position Applying For:</label>
+            <select id="position" name="position" required>
+                <option value="">Select a position</option>
+                <option value="textile-engineer">Textile Engineer</option>
+                <option value="textile-designer">Textile Designer</option>
+                <option value="production-manager">Production Manager</option>
+                <option value="weaver">Weaver</option>
+                <option value="garment-technologist">Garment Technologist</option>
+                <option value="merchandiser">Merchandiser</option>
+            </select>
+
+            <label for="experience">Years of Experience:</label>
+            <input type="number" id="experience" name="experience" min="0" max="40" required>
+
+            <label for="education">Highest Educational Qualification:</label>
+            <input type="text" id="education" name="education" placeholder="e.g., B.Tech in Textile Engineering" required>
+
+            <label for="skills">Skills and Expertise:</label>
+            <textarea id="skills" name="skills" rows="3" placeholder="e.g., Pattern Making, Quality Control, Dyeing Techniques" required></textarea>
+
+            <label for="location">Preferred Job Location:</label>
+            <input type="text" id="location" name="location" placeholder="e.g., New York, Mumbai" required>
+
+            <label for="availability">Availability to Start:</label>
+            <input type="date" id="availability" name="availability" required>
+
+            <label for="cover-letter">Cover Letter:</label>
+            <textarea id="cover-letter" name="cover-letter" rows="5" placeholder="Write a brief cover letter..." required></textarea>
+
+            <label for="resume">Upload Resume:</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+
+            <button type="submit">Submit Application</button></a>
+            
+        </form>
+        <p id="errorMessage" class="error-message"></p>
+        <p id="successMessage" class="success-message"></p>
+    </div>
+
+    <script>
+        // JavaScript for form validation
+        function validateForm() {
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const position = document.getElementById("position").value;
+            const experience = document.getElementById("experience").value;
+            const education = document.getElementById("education").value.trim();
+            const skills = document.getElementById("skills").value.trim();
+            const location = document.getElementById("location").value.trim();
+            const availability = document.getElementById("availability").value;
+            const coverLetter = document.getElementById("cover-letter").value.trim();
+            const resume = document.getElementById("resume").value;
+            
+
+            let errorMessage = "";
+           
+
+            // Validate name
+            if (name === "") {
+                errorMessage += "Please enter your full name.\n";
+            }
+
+            // Validate email format
+            if (!validateEmail(email)) {
+                errorMessage += "Please enter a valid email address.\n";
+            }
+
+            // Validate phone number format
+            if (!/^\d{10}$/.test(phone)) {
+                errorMessage += "Please enter a valid 10-digit phone number.\n";
+            }
+
+            // Validate position selection
+            if (position === "") {
+                errorMessage += "Please select a position.\n";
+            }
+
+            // Validate experience
+            if (experience < 0 || experience > 40) {
+                errorMessage += "Please enter a valid number of years of experience (0-40).\n";
+            }
+
+            // Validate education
+            if (education === "") {
+                errorMessage += "Please enter your highest educational qualification.\n";
+            }
+
+            // Validate skills
+            if (skills === "") {
+                errorMessage += "Please enter your skills and expertise.\n";
+            }
+
+            // Validate location
+            if (location === "") {
+                errorMessage += "Please enter your preferred job location.\n";
+            }
+
+            // Validate availability
+            if (availability === "") {
+                errorMessage += "Please select your availability date.\n";
+            }
+
+            // Validate cover letter
+            if (coverLetter === "") {
+                errorMessage += "Please write a cover letter.\n";
+            }
+
+            // Validate resume file
+            if (resume === "") {
+                errorMessage += "Please upload your resume.\n";
+            }
+           
+            if (errorMessage) {
+                document.getElementById("errorMessage").innerText = errorMessage;
+                document.getElementById("successMessage").innerText = "";
+                return false; // Prevent form submission
+            }
+
+             
+            document.getElementById("successMessage").innerText = "Application submitted successfully!";
+            document.getElementById("errorMessage").innerText = "";
+            return true; // Allow form submission
+        }
+
+        function validateEmail(email) {
+            const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>

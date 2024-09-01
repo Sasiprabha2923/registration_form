@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background-color: #1b1b1b;
+            color:white;
+            font-weight: bold;
+           
+        }
+
+        .container {
+             width: 100%;
+             height: 100%;
+             background-color: rgba(0, 0, 0, 0.8); /* Overlay color */
+             position: relative;
+             text-align: center;
+             padding: 40px;
+             box-sizing: border-box;
+             border-radius: 10px;
+
+    /* Background Image */
+             background: linear-gradient(rgba(105, 103, 103, 0.2), rgba(206, 203, 203, 0.2)), 
+                url('https://img.freepik.com/free-photo/woman-standing-factory-with-thread_1157-29832.jpg?size=626&ext=jpg&ga=GA1.1.809450633.1707898708&semt=ais_hybrid') no-repeat center center/cover;
+             background-size: cover; /* Ensure the image covers the entire container */
+             image-rendering: -webkit-optimize-contrast; /* Optional */
+             image-rendering: crisp-edges; /* Optional */
+        }
+
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.3;
+            z-index: -1;
+            background-size: cover;
+            border-radius: 10px;
+        }
+
+        .header-logo {
+            margin-bottom: 20px;
+        }
+
+        .header-logo img {
+            width: 40px;
+        }
+
+        .title {
+            font-size: 50px;
+            font-weight: bold;
+            color: #ff6200;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #260555;
+        }
+
+        .position {
+            font-size: 28px;
+            color: #ff6200;
+            margin-bottom: 20px;
+        }
+
+        .requirements {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-bottom: 30px;
+            font-size: 30px;
+        }
+
+        .requirements li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .requirements li::before {
+            content: '✔';
+            color: #ff6200;
+            margin-right: 10px;
+        }
+
+        .apply {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ff6200;
+            margin-bottom: 5px;
+            
+        }
+
+        .apply-email {
+            font-size: 40px;
+            text-transform: uppercase;
+            color: #ff6200;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXV8w-xPINH3nv_OsHNWr6RJYmERy9Smm8lA&s" alt="Impulse Logo">
+        </div>
+        <div class="title">We are HIRING!</div>
+        
+        <ul class="requirements">
+            <li>Textile Engineer</li>
+            <li>Textile Designer</li>
+            <li>Production Manager</li>
+            <li>Weaver</li>
+            <li>Garment Technologist</li>
+            <li>Merchandiser</li>
+        </ul>
+        <div class="apply">
+            <a href=success.html>APPLY NOW</a>
+        </div>
+    </div>
+</body>
+</html>
+
